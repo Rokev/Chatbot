@@ -1,0 +1,102 @@
+{
+  "nombre": "ViajesYa",
+  "datos_ficticios": false,
+  "ubicacion": "Carrera 10 # 20-30, Armenia ",
+  "zona_horaria": "America/Bogota",
+  "capacidad": 1,
+  "asesoria_minutos": 30,
+  "paso_minutos": 30,
+  "horarios": {
+    "0": [
+      "08:00",
+      "18:00"
+    ],
+    "1": [
+      "08:00",
+      "18:00"
+    ],
+    "2": [
+      "08:00",
+      "18:00"
+    ],
+    "3": [
+      "08:00",
+      "18:00"
+    ],
+    "4": [
+      "08:00",
+      "18:00"
+    ]
+  },
+  "servicios": {
+    "Santa Marta": {
+      "nombre": "Viaje a Santa Marta",
+      "precio_cop": 50000,
+      "dias_habiles": 15,
+      "minimo_dias_habiles": 5,
+      "duracion_viaje_dias": 2,
+      "alias": [
+        "santamarta"
+      ]
+    },
+    "Caño Cristales": {
+      "nombre": "La Macarena - Caño Cristales",
+      "precio_cop": 3587000,
+      "dias_habiles": 3,
+      "minimo_dias_habiles": 2,
+      "duracion_viaje_dias": 3,
+      "alias": [
+        "caño cristales",
+        "cano cristales",
+        "la macarena",
+        "macarena"
+      ]
+    },
+    "Nuquí": {
+      "nombre": "Nuquí - Guachalito",
+      "precio_cop": 975000,
+      "dias_habiles": 4,
+      "minimo_dias_habiles": 3,
+      "duracion_viaje_dias": 4,
+      "alias": [
+        "nuqui",
+        "guachalito"
+      ]
+    },
+    "Manizales": {
+      "nombre": "Manizales - Nevado del Ruiz",
+      "precio_cop": 830000,
+      "dias_habiles": 3,
+      "minimo_dias_habiles": 2,
+      "duracion_viaje_dias": 3,
+      "alias": [
+        "nevado del ruiz",
+        "nevado"
+      ]
+    },
+    "Amazonas": {
+      "nombre": "Leticia y Puerto Nariño - Amazonas",
+      "precio_cop": 1485000,
+      "dias_habiles": 4,
+      "minimo_dias_habiles": 3,
+      "duracion_viaje_dias": 4,
+      "alias": [
+        "leticia",
+        "puerto nariño",
+        "puerto narino"
+      ]
+    },
+    "Capurganá": {
+      "nombre": "Capurganá y Sapzurro",
+      "precio_cop": 1130000,
+      "dias_habiles": 4,
+      "minimo_dias_habiles": 3,
+      "duracion_viaje_dias": 4,
+      "alias": [
+        "capurgana",
+        "sapzurro"
+      ]
+    }
+  },
+  "condiciones": "Confirmar antes de registrar o cancelar. Una persona atendida a la vez. Sabado y Domingo cerrado. Cada viaje tiene fecha de salida fija y cupos limitados. Reservar minimo 5 dias antes de la fecha de viaje (segun el servicio)."
+}
