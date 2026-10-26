@@ -35,3 +35,14 @@ Archivos nuevos: `app_gradio.py`, `iniciar_gradio.bat`, `requirements.txt`, `BIT
 python -m sqlite3 reservas.db "SELECT codigo, cliente, servicio, fecha, estado FROM reservas;"
 ```
 
+
+## Canal de Telegram
+
+1. Crea el bot con @BotFather en Telegram y guarda el token (no lo pegues en archivos ni lo subas a Git).
+2. Deja `iniciar_api.bat` abierto (FastAPI en el puerto 8011).
+3. Doble clic en `iniciar_telegram.bat` (la primera vez instala `python-telegram-bot`). Pide, ocultos, el token de BotFather y la API key de Groq, y luego el ID del modelo. También sirven las variables `TELEGRAM_BOT_TOKEN`, `GROQ_API_KEY` y `GROQ_MODEL`.
+4. Abre tu bot en Telegram y escribe `/start`. Comandos: `/start`, `/help`, `/reset`.
+5. Reutiliza `Chat` de `chatbot_memoria.py`, igual que la terminal y Gradio. Cada chat de Telegram tiene su propio historial. Cuando hay una solicitud por confirmar aparecen los botones **Confirmar** / **Descartar** (también sirve escribir "sí" / "no"). `/reset` reinicia la conversación y no toca las reservas.
+6. Solo atiende chats privados. Los errores técnicos se muestran en la consola, no en Telegram.
+
+Archivos nuevos: `bot_telegram.py`, `iniciar_telegram.bat`.
