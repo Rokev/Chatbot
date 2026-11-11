@@ -1,2 +1,2 @@
 gradio>=6,<7
-python-telegram-bot>=21
+python-telegram-bot>=22,<23

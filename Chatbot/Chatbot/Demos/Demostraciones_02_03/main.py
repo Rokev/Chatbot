@@ -2,6 +2,7 @@
 
 import difflib
 import json
+import os
 import sqlite3
 import unicodedata
 from datetime import date, datetime, time, timedelta
@@ -15,7 +16,8 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
-from almacen_sqlite import AgendaSQLite, ConflictoReserva, CruceReserva, ReservaNoEncontrada, SinCupos
+from almacen_sqlite import ConflictoReserva, CruceReserva, ReservaNoEncontrada, SinCupos
+from api_telegram import AgendaTelegram, crear_router
 from viajes import VIAJES, buscar_viaje, viajes_de
 
 BASE = Path(__file__).resolve().parent
@@ -171,13 +173,20 @@ def conflicto(error, sufijo):
     raise HTTPException(409, f"{motivo} {sufijo}") from error
 
 
-agenda = AgendaSQLite(BASE_DATOS, clave_cliente=_normalizar)
+# AgendaTelegram extiende AgendaSQLite (misma base, mismas reglas de cupos y cruces) y añade las tablas
+# propietarios_telegram y operaciones_telegram para el canal de Telegram (clase 13).
+agenda = AgendaTelegram(BASE_DATOS, NEGOCIO, resolver_servicio, ZONA, clave_cliente=_normalizar)
 if agenda.vacia() and ARCHIVO.exists():
     # Primera vez con SQLite: se importa el histórico de reservas.json (conserva códigos). Es idempotente.
     try:
         agenda.importar_json(ARCHIVO, servicio_canonico=lambda v: _servicio_canonico(v))
     except (ValueError, OSError) as _exc:
         raise SystemExit(f"No se pudo migrar reservas.json a reservas.db: {_exc}") from _exc
+
+
+# Rutas /telegram: exigen X-API-Key (CHATBOT_API_KEY, la misma del bot) y X-Telegram-User. Sin la clave la API no inicia.
+# Las rutas anteriores (/reservas, /chat...) siguen sin autenticación: la API es solo local, no publicar en Internet.
+app.include_router(crear_router(agenda, os.environ.get("CHATBOT_API_KEY", "")))
 
 
 def servicio_valido(servicio):
